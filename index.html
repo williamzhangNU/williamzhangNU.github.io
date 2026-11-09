@@ -20,6 +20,7 @@
   :root {
     --bg: #ffffff;
     --ink: #1f1d24;
+    --body: #3a3741;
     --muted: #67636f;
     --rule: #ebe8f0;
     --accent: #4e2a84;
@@ -31,6 +32,7 @@
     :root {
       --bg: #141217;
       --ink: #eceaf1;
+      --body: #cfccd6;
       --muted: #a39fac;
       --rule: #2a2730;
       --accent: #bba6ea;
@@ -47,28 +49,30 @@
     font: 400 16px/1.6 var(--sans);
     -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 680px; margin: 0 auto; padding: 96px 24px 72px; }
+  main { max-width: 860px; margin: 0 auto; padding: 88px 24px 72px; }
 
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
   /* Intro */
-  .intro { display: flex; align-items: center; gap: 22px; }
-  .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 1px var(--rule); }
-  h1 { font: 500 40px/1.1 var(--serif); letter-spacing: -0.012em; margin: 0; }
+  .intro { display: flex; align-items: center; gap: 28px; }
+  .avatar { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 1px var(--rule); }
+  h1 { font: 500 42px/1.1 var(--serif); letter-spacing: -0.012em; margin: 0; }
   .role { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
-  .role a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
-  .role a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  .contact { display: flex; flex-wrap: wrap; gap: 4px 22px; list-style: none; margin: 14px 0 0; padding: 0; font-weight: 500; font-size: 15px; }
 
   .thesis {
     font: 400 26px/1.42 var(--serif);
     letter-spacing: -0.006em;
     margin: 48px 0 0;
+    max-width: 30em;
     text-wrap: pretty;
   }
-  .contact { display: flex; flex-wrap: wrap; gap: 6px 24px; list-style: none; margin: 30px 0 0; padding: 0; font-weight: 500; font-size: 15px; }
-  .seeking { margin: 18px 0 0; color: var(--muted); font-size: 15px; }
+  .bio { margin-top: 22px; color: var(--body); }
+  .bio p { margin: 0 0 14px; max-width: 68ch; }
+  .bio p:last-child { margin-bottom: 0; }
+  .seeking { color: var(--ink); font-weight: 500; }
 
   /* Sections */
   section { margin-top: 72px; }
@@ -80,36 +84,49 @@
   .sub { color: var(--muted); }
 
   /* Publications */
-  .legend { color: var(--muted); font-size: 14px; margin: -14px 0 24px; }
+  .legend { color: var(--muted); font-size: 14px; margin: -14px 0 26px; }
   .pubs { list-style: none; margin: 0; padding: 0; }
-  .pub + .pub { margin-top: 28px; }
+  .pub { display: grid; grid-template-columns: 236px 1fr; column-gap: 28px; align-items: start; }
+  .pub + .pub { margin-top: 34px; }
+  .thumb {
+    display: block; aspect-ratio: 16 / 10; background: #fff;
+    border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
+  }
+  .thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .thumb:hover { border-color: var(--accent); }
   .pub-title { font-weight: 500; line-height: 1.45; }
   .pub-title a { color: var(--ink); }
   .pub-title a:hover { color: var(--accent); }
   .authors { color: var(--muted); font-size: 14px; line-height: 1.55; margin-top: 4px; }
   .me { color: var(--ink); font-weight: 500; }
-  .expand {
-    font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer;
-  }
+  .expand { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
   .expand:hover { text-decoration: underline; text-underline-offset: 3px; }
   .venue { font-size: 14px; margin-top: 4px; }
   .venue strong { font-weight: 600; }
   .hl { color: var(--hl); font-weight: 600; }
+  .tldr { font-size: 14.5px; line-height: 1.55; color: var(--body); margin: 6px 0 0; max-width: 64ch; }
   .plinks { display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 14px; font-weight: 500; margin-top: 3px; }
 
-  .earlier { margin: 32px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 15px; }
+  .earlier { margin: 36px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 15px; }
 
   footer { margin-top: 88px; color: var(--muted); font-size: 13px; }
 
-  @media (max-width: 560px) {
+  @media (prefers-color-scheme: dark) {
+    .thumb img { filter: brightness(0.94); }
+  }
+
+  @media (max-width: 640px) {
     main { padding: 56px 16px 56px; }
-    .intro { gap: 16px; }
-    .avatar { width: 64px; height: 64px; }
+    .intro { gap: 18px; }
+    .avatar { width: 84px; height: 84px; }
     h1 { font-size: 32px; }
+    .contact { gap: 2px 18px; }
     .thesis { font-size: 22px; margin-top: 36px; }
     section { margin-top: 56px; }
     .rows li { grid-template-columns: 1fr; padding: 6px 0; }
     .when { font-size: 13px; }
+    .pub { grid-template-columns: 1fr; }
+    .thumb { margin-bottom: 12px; aspect-ratio: 16 / 9; }
   }
 </style>
 </head>
@@ -118,22 +135,26 @@
 
   <header>
     <div class="intro">
-      <img class="avatar" src="photos/avatar.jpg" alt="" width="80" height="80">
+      <img class="avatar" src="photos/avatar.jpg" alt="Portrait of Pingyue Zhang" width="132" height="132">
       <div>
         <h1>Pingyue Zhang</h1>
-        <p class="role">PhD student in Computer Science at Northwestern University, advised by <a href="https://limanling.github.io/">Manling Li</a>.</p>
+        <p class="role">PhD student in Computer Science, Northwestern University</p>
+        <ul class="contact">
+          <li><a href="mailto:pingyuezhang2029@u.northwestern.edu">Email</a></li>
+          <li><a href="https://scholar.google.com/citations?user=w8Z_UEwAAAAJ&amp;hl=en">Google Scholar</a></li>
+          <li><a href="https://github.com/williamzhangNU">GitHub</a></li>
+          <li><a href="docs/CV.pdf">CV</a></li>
+        </ul>
       </div>
     </div>
 
     <p class="thesis">I study how AI agents build their own understanding of the physical world and act on it, from spatial reasoning in foundation models to embodied agents and robotics.</p>
 
-    <ul class="contact">
-      <li><a href="mailto:pingyuezhang2029@u.northwestern.edu">Email</a></li>
-      <li><a href="https://scholar.google.com/citations?user=w8Z_UEwAAAAJ&amp;hl=en">Google Scholar</a></li>
-      <li><a href="https://github.com/williamzhangNU">GitHub</a></li>
-      <li><a href="docs/CV.pdf">CV</a></li>
-    </ul>
-    <p class="seeking">I am looking for research internships for summer 2027.</p>
+    <div class="bio">
+      <p>I am a third-year PhD student at Northwestern University, advised by <a href="https://limanling.github.io/">Manling Li</a>. Foundation models can reason well about a scene once it has been described to them, but they still struggle to form a picture of space from their own observations, keep it up to date as they move, and use it to act. My work follows this problem from static spatial reasoning (<a href="https://mind-cube.github.io">MindCube</a>), to active exploration (<a href="https://theory-of-space.github.io">Theory of Space</a>), to code agents controlling robots (<a href="https://www.embodied-first-exam.ai">Embodied First Exam</a>). I also build open-source frameworks for training multi-turn LLM and VLM agents with reinforcement learning (<a href="https://github.com/mll-lab-nu/RAGEN">RAGEN</a>, <a href="https://vagen-ai.github.io">VAGEN</a>).</p>
+      <p>In summer 2026 I was a research intern at Adobe Research. Before Northwestern, I received my B.Eng. and M.Eng. in Computer Science from Shanghai Jiao Tong University, where I worked with <a href="https://myw19.github.io/">Mengyue Wu</a> on audio and multimodal representation learning. Outside research, I play basketball and tennis.</p>
+      <p class="seeking">I am looking for research internships for summer 2027.</p>
+    </div>
   </header>
 
   <section aria-labelledby="news">
@@ -153,76 +174,104 @@
     <ul class="pubs">
 
       <li class="pub">
-        <div class="pub-title"><a href="https://www.embodied-first-exam.ai">Embodied First Exam</a></div>
-        <div class="authors">Kangrui Wang*, Qineng Wang*, Changhe Chen*, <span class="me">Pingyue Zhang*</span>, Chi Gui*,<span class="more" id="efe-more" hidden> Feishi Wang, Canyu Chen, Wenli Xiao, Xiaoyu Huang, Tonghe Zhang, Linjie Li, Zihan Wang, Minyeong Kim, Yiyou Sun, Mingkai Deng, Jinyu Hou, Eric P. Xing, Han Liu, Qi Zhu, Huaxiu Yao, Zhiwen Fan, Yuejiang Liu, Dawn Song, Pieter Abbeel, Jiajun Wu, Yuke Zhu, Guanya Shi, Ruohan Zhang, Manling Li</span> <button class="expand" type="button" aria-controls="efe-more" aria-expanded="false">and 24 more</button></div>
-        <div class="venue"><strong>Preprint</strong>, 2026</div>
-        <div class="plinks">
-          <!-- arXiv link goes here once it is out -->
-          <a href="https://www.embodied-first-exam.ai">Website</a>
-          <a href="https://github.com/mll-lab-nu/embodied-first-exam">Code</a>
+        <a class="thumb" href="https://www.embodied-first-exam.ai" aria-hidden="true" tabindex="-1"><img src="figs/efe.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://www.embodied-first-exam.ai">Embodied First Exam</a></div>
+          <div class="authors">Kangrui Wang*, Qineng Wang*, Changhe Chen*, <span class="me">Pingyue Zhang*</span>, Chi Gui*,<span class="more" id="efe-more" hidden> Feishi Wang, Canyu Chen, Wenli Xiao, Xiaoyu Huang, Tonghe Zhang, Linjie Li, Zihan Wang, Minyeong Kim, Yiyou Sun, Mingkai Deng, Jinyu Hou, Eric P. Xing, Han Liu, Qi Zhu, Huaxiu Yao, Zhiwen Fan, Yuejiang Liu, Dawn Song, Pieter Abbeel, Jiajun Wu, Yuke Zhu, Guanya Shi, Ruohan Zhang, Manling Li</span> <button class="expand" type="button" aria-controls="efe-more" aria-expanded="false">and 24 more</button></div>
+          <div class="venue"><strong>Preprint</strong>, 2026</div>
+          <p class="tldr">An open exam of robot tasks across 22 simulators: code agents answer with programs and verifier programs grade them. Agents do far better when they can read the simulator state than when they rely on robot sensors.</p>
+          <div class="plinks">
+            <!-- arXiv link goes here once it is out -->
+            <a href="https://www.embodied-first-exam.ai">Website</a>
+            <a href="https://github.com/mll-lab-nu/embodied-first-exam">Code</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2602.07055">Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?</a></div>
-        <div class="authors"><span class="me">Pingyue Zhang*</span>, Zihan Huang*, Yue Wang*, Jieyu Zhang*, Letian Xue, Zihan Wang, Qineng Wang, Keshigeyan Chandrasegaran, Ruohan Zhang, Yejin Choi, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Manling Li</div>
-        <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ACL 2026 Workshop on Advances in Language and Vision Research.</div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2602.07055">Paper</a>
-          <a href="https://theory-of-space.github.io">Website</a>
-          <a href="https://github.com/mll-lab-nu/Theory-of-Space">Code</a>
+        <a class="thumb" href="https://theory-of-space.github.io" aria-hidden="true" tabindex="-1"><img src="figs/tos.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2602.07055">Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?</a></div>
+          <div class="authors"><span class="me">Pingyue Zhang*</span>, Zihan Huang*, Yue Wang*, Jieyu Zhang*, Letian Xue, Zihan Wang, Qineng Wang, Keshigeyan Chandrasegaran, Ruohan Zhang, Yejin Choi, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Manling Li</div>
+          <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ACL 2026 Workshop on Advances in Language and Vision Research.</div>
+          <p class="tldr">Can a model build a spatial belief by exploring an unseen space on its own? Models do worse when they explore actively than when shown the same views, and they are slow to revise beliefs that new evidence contradicts.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2602.07055">Paper</a>
+            <a href="https://theory-of-space.github.io">Website</a>
+            <a href="https://github.com/mll-lab-nu/Theory-of-Space">Code</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2506.21458">MindCube: Spatial Mental Modeling from Limited Views</a></div>
-        <div class="authors">Baiqiao Yin*, Qineng Wang*, <span class="me">Pingyue Zhang</span>, Jianshu Zhang, Kangrui Wang, Zihan Wang, Jieyu Zhang, Keshigeyan Chandrasegaran, Han Liu, Ranjay Krishna, Saining Xie, Manling Li, Jiajun Wu, Li Fei-Fei</div>
-        <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ICCV 2025 Workshop on Embodied Spatial Reasoning.</div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2506.21458">Paper</a>
-          <a href="https://mind-cube.github.io">Website</a>
-          <a href="https://github.com/mll-lab-nu/MindCube">Code</a>
+        <a class="thumb" href="https://mind-cube.github.io" aria-hidden="true" tabindex="-1"><img src="figs/mindcube.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2506.21458">MindCube: Spatial Mental Modeling from Limited Views</a></div>
+          <div class="authors">Baiqiao Yin*, Qineng Wang*, <span class="me">Pingyue Zhang</span>, Jianshu Zhang, Kangrui Wang, Zihan Wang, Jieyu Zhang, Keshigeyan Chandrasegaran, Han Liu, Ranjay Krishna, Saining Xie, Manling Li, Jiajun Wu, Li Fei-Fei</div>
+          <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ICCV 2025 Workshop on Embodied Spatial Reasoning.</div>
+          <p class="tldr">A benchmark for imagining a scene from a few views. Training models to first sketch a cognitive map and then reason about it greatly improves their answers.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2506.21458">Paper</a>
+            <a href="https://mind-cube.github.io">Website</a>
+            <a href="https://github.com/mll-lab-nu/MindCube">Code</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2604.06268">RAGEN-2: Reasoning Collapse in Agentic RL</a></div>
-        <div class="authors">Zihan Wang, Chi Gui, Xing Jin, Qineng Wang, Licheng Liu, Kangrui Wang, Shiqi Chen, Linjie Li, Zhengyuan Yang, <span class="me">Pingyue Zhang</span>, Yiping Lu, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
-        <div class="venue"><strong>ICML 2026</strong>. <span class="hl">Oral</span>.</div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2604.06268">Paper</a>
-          <a href="https://ragen-ai.github.io">Website</a>
+        <a class="thumb" href="https://ragen-ai.github.io" aria-hidden="true" tabindex="-1"><img src="figs/ragen2.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2604.06268">RAGEN-2: Reasoning Collapse in Agentic RL</a></div>
+          <div class="authors">Zihan Wang, Chi Gui, Xing Jin, Qineng Wang, Licheng Liu, Kangrui Wang, Shiqi Chen, Linjie Li, Zhengyuan Yang, <span class="me">Pingyue Zhang</span>, Yiping Lu, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
+          <div class="venue"><strong>ICML 2026</strong>. <span class="hl">Oral</span>.</div>
+          <p class="tldr">Finds template collapse in agentic RL, where reasoning stays diverse but stops depending on the input, and fixes it by training on the prompts that carry the most reward signal.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2604.06268">Paper</a>
+            <a href="https://ragen-ai.github.io">Website</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2510.16907">VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents</a></div>
-        <div class="authors">Kangrui Wang*, <span class="me">Pingyue Zhang*</span>, Zihan Wang*, Yaning Gao*, Linjie Li*, Qineng Wang, Hanyang Chen, Chi Wan, Yiping Lu, Zhengyuan Yang, Lijuan Wang, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Yejin Choi, Manling Li</div>
-        <div class="venue"><strong>NeurIPS 2025</strong></div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2510.16907">Paper</a>
-          <a href="https://vagen-ai.github.io">Website</a>
-          <a href="https://github.com/mll-lab-nu/VAGEN">Code</a>
+        <a class="thumb" href="https://vagen-ai.github.io" aria-hidden="true" tabindex="-1"><img src="figs/vagen.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2510.16907">VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents</a></div>
+          <div class="authors">Kangrui Wang*, <span class="me">Pingyue Zhang*</span>, Zihan Wang*, Yaning Gao*, Linjie Li*, Qineng Wang, Hanyang Chen, Chi Wan, Yiping Lu, Zhengyuan Yang, Lijuan Wang, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Yejin Choi, Manling Li</div>
+          <div class="venue"><strong>NeurIPS 2025</strong></div>
+          <p class="tldr">Multi-turn RL for VLM agents that rewards them for describing the current state and predicting the next one, which improves decisions across visual and embodied tasks.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2510.16907">Paper</a>
+            <a href="https://vagen-ai.github.io">Website</a>
+            <a href="https://github.com/mll-lab-nu/VAGEN">Code</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2504.20073">RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning</a></div>
-        <div class="authors">Zihan Wang*, Kangrui Wang*, Qineng Wang*, <span class="me">Pingyue Zhang*</span>, Linjie Li*, Zhengyuan Yang, Xing Jin, Kefan Yu, Minh Nhat Nguyen, Licheng Liu, Eli Gottlieb, Yiping Lu, Kyunghyun Cho, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
-        <div class="venue"><strong>Preprint</strong>, 2025. <span class="hl">Best Poster Award</span> at the Midwest Machine Learning Symposium 2025.</div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2504.20073">Paper</a>
-          <a href="https://github.com/mll-lab-nu/RAGEN">Code</a>
+        <a class="thumb" href="https://github.com/mll-lab-nu/RAGEN" aria-hidden="true" tabindex="-1"><img src="figs/ragen.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2504.20073">RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning</a></div>
+          <div class="authors">Zihan Wang*, Kangrui Wang*, Qineng Wang*, <span class="me">Pingyue Zhang*</span>, Linjie Li*, Zhengyuan Yang, Xing Jin, Kefan Yu, Minh Nhat Nguyen, Licheng Liu, Eli Gottlieb, Yiping Lu, Kyunghyun Cho, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
+          <div class="venue"><strong>Preprint</strong>, 2025. <span class="hl">Best Poster Award</span> at the Midwest Machine Learning Symposium 2025.</div>
+          <p class="tldr">StarPO, a framework for multi-turn RL on LLM agents, and the echo trap, a training collapse where agents fall into repetitive reasoning, with a stabilized variant that avoids it.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2504.20073">Paper</a>
+            <a href="https://github.com/mll-lab-nu/RAGEN">Code</a>
+          </div>
         </div>
       </li>
 
       <li class="pub">
-        <div class="pub-title"><a href="https://arxiv.org/abs/2609.08162">WorldAgen: Unified State-Action Prediction with Test-Time World Model Training</a></div>
-        <div class="authors">Chi Wan, Kangrui Wang, Yuan Si, <span class="me">Pingyue Zhang</span>, Manling Li</div>
-        <div class="venue"><strong>AAAI 2026</strong></div>
-        <div class="plinks">
-          <a href="https://arxiv.org/abs/2609.08162">Paper</a>
-          <a href="https://worldagen.github.io">Website</a>
+        <a class="thumb" href="https://worldagen.github.io" aria-hidden="true" tabindex="-1"><img src="figs/worldagen.jpg" alt="" loading="lazy"></a>
+        <div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2609.08162">WorldAgen: Unified State-Action Prediction with Test-Time World Model Training</a></div>
+          <div class="authors">Chi Wan, Kangrui Wang, Yuan Si, <span class="me">Pingyue Zhang</span>, Manling Li</div>
+          <div class="venue"><strong>AAAI 2026</strong></div>
+          <p class="tldr">One model predicts both the next actions and the next observations, and keeps training its world model at test time from its own exploration.</p>
+          <div class="plinks">
+            <a href="https://arxiv.org/abs/2609.08162">Paper</a>
+            <a href="https://worldagen.github.io">Website</a>
+          </div>
         </div>
       </li>
 
@@ -235,7 +284,7 @@
     <ul class="rows">
       <li><span class="when">Summer 2026</span><span>Research Intern, Adobe Research</span></li>
       <li><span class="when">2024 – now</span><span>PhD in Computer Science, Northwestern University</span></li>
-      <li><span class="when">2021 – 2024</span><span>M.Eng. in Computer Science, Shanghai Jiao Tong University <span class="sub">(advised by Mengyue Wu)</span></span></li>
+      <li><span class="when">2021 – 2024</span><span>M.Eng. in Computer Science, Shanghai Jiao Tong University</span></li>
       <li><span class="when">2017 – 2021</span><span>B.Eng. in Computer Science (Honors), Shanghai Jiao Tong University</span></li>
     </ul>
   </section>
