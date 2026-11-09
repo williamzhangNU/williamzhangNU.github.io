@@ -23,6 +23,7 @@
     --muted: #67636f;
     --rule: #ebe8f0;
     --accent: #4e2a84;
+    --hl: #c0262d;
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
@@ -33,6 +34,7 @@
       --muted: #a39fac;
       --rule: #2a2730;
       --accent: #bba6ea;
+      --hl: #ff8f87;
     }
   }
 
@@ -53,7 +55,7 @@
 
   /* Intro */
   .intro { display: flex; align-items: center; gap: 22px; }
-  .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex: none; }
+  .avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex: none; box-shadow: 0 0 0 1px var(--rule); }
   h1 { font: 500 40px/1.1 var(--serif); letter-spacing: -0.012em; margin: 0; }
   .role { margin: 8px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
   .role a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
@@ -92,6 +94,7 @@
   .expand:hover { text-decoration: underline; text-underline-offset: 3px; }
   .venue { font-size: 14px; margin-top: 4px; }
   .venue strong { font-weight: 600; }
+  .hl { color: var(--hl); font-weight: 600; }
   .plinks { display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 14px; font-weight: 500; margin-top: 3px; }
 
   .earlier { margin: 32px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 15px; }
@@ -163,7 +166,7 @@
       <li class="pub">
         <div class="pub-title"><a href="https://arxiv.org/abs/2602.07055">Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?</a></div>
         <div class="authors"><span class="me">Pingyue Zhang*</span>, Zihan Huang*, Yue Wang*, Jieyu Zhang*, Letian Xue, Zihan Wang, Qineng Wang, Keshigeyan Chandrasegaran, Ruohan Zhang, Yejin Choi, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Manling Li</div>
-        <div class="venue"><strong>ICLR 2026</strong>. Spotlight at the ACL 2026 Workshop on Advances in Language and Vision Research.</div>
+        <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ACL 2026 Workshop on Advances in Language and Vision Research.</div>
         <div class="plinks">
           <a href="https://arxiv.org/abs/2602.07055">Paper</a>
           <a href="https://theory-of-space.github.io">Website</a>
@@ -174,7 +177,7 @@
       <li class="pub">
         <div class="pub-title"><a href="https://arxiv.org/abs/2506.21458">MindCube: Spatial Mental Modeling from Limited Views</a></div>
         <div class="authors">Baiqiao Yin*, Qineng Wang*, <span class="me">Pingyue Zhang</span>, Jianshu Zhang, Kangrui Wang, Zihan Wang, Jieyu Zhang, Keshigeyan Chandrasegaran, Han Liu, Ranjay Krishna, Saining Xie, Manling Li, Jiajun Wu, Li Fei-Fei</div>
-        <div class="venue"><strong>ICLR 2026</strong>. Spotlight at the ICCV 2025 Workshop on Embodied Spatial Reasoning.</div>
+        <div class="venue"><strong>ICLR 2026</strong>. <span class="hl">Spotlight</span> at the ICCV 2025 Workshop on Embodied Spatial Reasoning.</div>
         <div class="plinks">
           <a href="https://arxiv.org/abs/2506.21458">Paper</a>
           <a href="https://mind-cube.github.io">Website</a>
@@ -185,7 +188,7 @@
       <li class="pub">
         <div class="pub-title"><a href="https://arxiv.org/abs/2604.06268">RAGEN-2: Reasoning Collapse in Agentic RL</a></div>
         <div class="authors">Zihan Wang, Chi Gui, Xing Jin, Qineng Wang, Licheng Liu, Kangrui Wang, Shiqi Chen, Linjie Li, Zhengyuan Yang, <span class="me">Pingyue Zhang</span>, Yiping Lu, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
-        <div class="venue"><strong>ICML 2026</strong>. Oral.</div>
+        <div class="venue"><strong>ICML 2026</strong>. <span class="hl">Oral</span>.</div>
         <div class="plinks">
           <a href="https://arxiv.org/abs/2604.06268">Paper</a>
           <a href="https://ragen-ai.github.io">Website</a>
@@ -206,7 +209,7 @@
       <li class="pub">
         <div class="pub-title"><a href="https://arxiv.org/abs/2504.20073">RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning</a></div>
         <div class="authors">Zihan Wang*, Kangrui Wang*, Qineng Wang*, <span class="me">Pingyue Zhang*</span>, Linjie Li*, Zhengyuan Yang, Xing Jin, Kefan Yu, Minh Nhat Nguyen, Licheng Liu, Eli Gottlieb, Yiping Lu, Kyunghyun Cho, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li</div>
-        <div class="venue"><strong>Preprint</strong>, 2025. Best Poster Award at the Midwest Machine Learning Symposium 2025.</div>
+        <div class="venue"><strong>Preprint</strong>, 2025. <span class="hl">Best Poster Award</span> at the Midwest Machine Learning Symposium 2025.</div>
         <div class="plinks">
           <a href="https://arxiv.org/abs/2504.20073">Paper</a>
           <a href="https://github.com/mll-lab-nu/RAGEN">Code</a>
