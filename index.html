@@ -92,7 +92,8 @@
     display: block; aspect-ratio: 16 / 10; background: #fff;
     border: 1px solid var(--rule); border-radius: 6px; overflow: hidden;
   }
-  .thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .thumb img, .thumb video { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .thumb video { object-fit: cover; }
   .thumb:hover { border-color: var(--accent); }
   .pub-title { font-weight: 500; line-height: 1.45; }
   .pub-title a { color: var(--ink); }
@@ -112,7 +113,7 @@
   footer { margin-top: 88px; color: var(--muted); font-size: 13px; }
 
   @media (prefers-color-scheme: dark) {
-    .thumb img { filter: brightness(0.94); }
+    .thumb img, .thumb video { filter: brightness(0.94); }
   }
 
   @media (max-width: 640px) {
@@ -175,7 +176,7 @@
     <ul class="pubs">
 
       <li class="pub">
-        <a class="thumb" href="https://www.embodied-first-exam.ai" aria-hidden="true" tabindex="-1"><img src="figs/efe.jpg" alt="" loading="lazy"></a>
+        <a class="thumb" href="https://www.embodied-first-exam.ai" aria-hidden="true" tabindex="-1"><video src="figs/efe.mp4" poster="figs/efe.jpg" muted loop playsinline preload="none"></video></a>
         <div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2611.12177">Embodied First Exam</a></div>
           <div class="authors">Kangrui Wang*, Qineng Wang*, Changhe Chen*, <span class="me">Pingyue Zhang*</span>, Chi Gui*, Feishi Wang*, Canyu Chen*,<span class="more" id="efe-more" hidden> Wenli Xiao, Xiaoyu Huang, Tonghe Zhang, Linjie Li, Zihan Wang, Minyeong Kim, Yiyou Sun, Mingkai Deng, Jinyu Hou, Qi Zhu, Han Liu, Eric P. Xing, Huaxiu Yao, Zhiwen Fan, Yuejiang Liu, Dawn Song, Pieter Abbeel, Li Fei-Fei, Jiajun Wu, Yuke Zhu, Guanya Shi, Ruohan Zhang, Manling Li</span> <button class="expand" type="button" aria-controls="efe-more" aria-expanded="false">and 23 more</button></div>
@@ -191,7 +192,7 @@
       </li>
 
       <li class="pub">
-        <a class="thumb" href="https://theory-of-space.github.io" aria-hidden="true" tabindex="-1"><img src="figs/tos.jpg" alt="" loading="lazy"></a>
+        <a class="thumb" href="https://theory-of-space.github.io" aria-hidden="true" tabindex="-1"><video src="figs/tos.mp4" poster="figs/tos.jpg" muted loop playsinline preload="none"></video></a>
         <div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2602.07055">Theory of Space: Can Foundation Models Construct Spatial Beliefs through Active Exploration?</a></div>
           <div class="authors"><span class="me">Pingyue Zhang*</span>, Zihan Huang*, Yue Wang*, Jieyu Zhang*, Letian Xue, Zihan Wang, Qineng Wang, Keshigeyan Chandrasegaran, Ruohan Zhang, Yejin Choi, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Manling Li</div>
@@ -264,7 +265,7 @@
       </li>
 
       <li class="pub">
-        <a class="thumb" href="https://worldagen.github.io" aria-hidden="true" tabindex="-1"><img src="figs/worldagen.jpg" alt="" loading="lazy"></a>
+        <a class="thumb" href="https://worldagen.github.io" aria-hidden="true" tabindex="-1"><video src="figs/worldagen.mp4" poster="figs/worldagen.jpg" muted loop playsinline preload="none"></video></a>
         <div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2609.08162">WorldAgen: Unified State-Action Prediction with Test-Time World Model Training</a></div>
           <div class="authors">Chi Wan, Kangrui Wang, Yuan Si, <span class="me">Pingyue Zhang</span>, Manling Li</div>
@@ -302,6 +303,23 @@
       btn.remove();
     });
   });
+
+  // Paper clips play only while on screen, and never when the reader asks for reduced motion.
+  var clips = document.querySelectorAll('.thumb video');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!still && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var p = e.target.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          e.target.pause();
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    clips.forEach(function (v) { io.observe(v); });
+  }
 </script>
 </body>
 </html>
